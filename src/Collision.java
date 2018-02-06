@@ -35,38 +35,16 @@ public class Collision {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         List<Point> points = new ArrayList<>();
-        Pattern p = Pattern.compile("-?\\d+");
+        Pattern p = Pattern.compile("p=<(-?\\d+),(-?\\d+),(-?\\d+)>, v=<(-?\\d+),(-?\\d+),(-?\\d+)>, a=<(-?\\d+),(-?\\d+),(-?\\d+)>");
 
         for (int i = 0; i < 1000; i++) {
             Point point = new Point();
             Matcher m = p.matcher(in.readLine());
-            int[] pos = new int[3];
             m.find();
-            pos[0] = Integer.parseInt(m.group());
-            m.find();
-            pos[1] = Integer.parseInt(m.group());
-            m.find();
-            pos[2] = Integer.parseInt(m.group());
-
-            int[] vel = new int[3];
-            m.find();
-            vel[0] = Integer.parseInt(m.group());
-            m.find();
-            vel[1] = Integer.parseInt(m.group());
-            m.find();
-            vel[2] = Integer.parseInt(m.group());
-
-            int[] acc = new int[3];
-            m.find();
-            acc[0] = Integer.parseInt(m.group());
-            m.find();
-            acc[1] = Integer.parseInt(m.group());
-            m.find();
-            acc[2] = Integer.parseInt(m.group());
-
-            point.setPosition(pos);
-            point.setVelocity(vel);
-            point.setAcceleration(acc);
+            
+            point.setPosition(new int[] {Integer.parseInt(m.group(1)), Integer.parseInt(m.group(2)), Integer.parseInt(m.group(3))});
+            point.setVelocity(new int[] {Integer.parseInt(m.group(4)), Integer.parseInt(m.group(5)), Integer.parseInt(m.group(6))});
+            point.setAcceleration(new int[] {Integer.parseInt(m.group(7)), Integer.parseInt(m.group(8)), Integer.parseInt(m.group(9))});
 
             points.add(point);
         }
